@@ -1,20 +1,28 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+// Flow
+import React from "react";
+// Components
+import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import { NativeBaseProvider } from "native-base";
+import { SafeAreaView, StatusBar, StyleSheet, Text } from "react-native";
 
-export default function App() {
+const StatusBarHeight = StatusBar.currentHeight ? StatusBar.currentHeight : 0;
+
+const App: React.FC = () => {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NativeBaseProvider>
+      <SafeAreaView style={styles.container}>
+        <Text>Open up App.tsx to start working on your app!</Text>
+        <ExpoStatusBar style="auto" />
+      </SafeAreaView>
+    </NativeBaseProvider>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    marginTop: StatusBarHeight,
   },
 });
